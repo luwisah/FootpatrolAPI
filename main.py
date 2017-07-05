@@ -5,20 +5,20 @@ import requests
 # Under the MIT license
 
 # you need to change this to yours 
-cart_id = 'YOUR CART ID'
+cart_id = 'your_cart_id'
 
 # this shouldn't change, only have it as a variable just in case.
-x_api_key = '5F9D749B65CD44479C1BA2AA21991925'
+x_api_key = 'EA0E72B099914EB3BA6BE90A21EA43A9'
 
 class FootpatrolAPI(object):
 	def __init__(self):
 		self.s = requests.Session()
 
-		self.s.get("https://commerce.mesh.mx/stores/footpatrol/updates?version=2.0")
-		self.s.get("https://commerce.mesh.mx/stores/footpatrol/nav?channel=iphone-app")
-		self.s.get("https://commerce.mesh.mx/stores/footpatrol/deviceConfigurations/AppConfig")
-		self.s.get("https://commerce.mesh.mx/stores/footpatrol/snippets/iphone-app?expand=content")
-		self.s.get("https://commerce.mesh.mx/stores/footpatrol/carts/" + cart_id)
+		self.s.get("https://commerce.mesh.mx/stores/size/updates?version=2.0")
+		self.s.get("https://commerce.mesh.mx/stores/size/nav?channel=iphone-app")
+		self.s.get("https://commerce.mesh.mx/stores/size/deviceConfigurations/AppConfig")
+		self.s.get("https://commerce.mesh.mx/stores/size/snippets/iphone-app?expand=content")
+		self.s.get("https://commerce.mesh.mx/stores/size/carts/" + cart_id)
 
 	def add_to_cart(self, pidsize):
 		headers = {
@@ -27,14 +27,14 @@ class FootpatrolAPI(object):
 		    'X-API-Key': x_api_key,
 		    'Accept': '*/*',
 		    'X-Debug': '1',
-		    'Accept-Language': 'en-gb',
-		    'User-Agent': 'FootPatrol/2.0 CFNetwork/808.3 Darwin/16.3.0',
+		    'Accept-Language': 'en-us',
+		    'User-Agent': 'size/2.0 CFNetwork/808.3 Darwin/16.3.0',
 		    'MESH-Commerce-Channel': 'iphone-app',
 		}
 
 		data = '{"quantity":1}'
 
-		self.s.put('https://commerce.mesh.mx/stores/footpatrol/carts/' + cart_id + '/' + pidsize, headers=headers, data=data)
+		self.s.put('https://commerce.mesh.mx/stores/size/carts/' + cart_id + '/' + pidsize, headers=headers, data=data)
 
 api = FootpatrolAPI()
 api.add_to_cart(raw_input("PID.SIZE? "))
